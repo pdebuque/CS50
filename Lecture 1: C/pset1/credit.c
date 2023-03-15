@@ -19,16 +19,32 @@ int main(void)
   // check for valid sum
   // bool sum = check_sum(num);
 
-  printf("Luhn's sum: %i\n", get_sum(num));
+  // printf("Luhn's sum: %i\n", get_sum(num));
 
   if (get_sum(num) % 10 == 0)
   {
     // check card type
-    printf("card type: %c\n", check_card(num));
+    char type = check_card(num);
+    switch(type) 
+    {
+      case 'v':
+      printf("VISA\n");
+      break;
+      case 'm':
+      printf("MASTERCARD\n");
+      break;
+      case 'a':
+      printf("AMERICAN EXPRESS\n");
+      break;
+      case 'i':
+      printf("INVALID\n");
+      break;
+    }
+    
   }
   else
   {
-    printf("INVALID");
+    printf("INVALID\n");
   }
 }
 
@@ -114,25 +130,30 @@ int get_sum(long num)
 char check_card(long num)
 {
   int length = get_length(num);
+  int first = get_digit(num, length);
+  int second = get_digit(num, length - 1);
 
   if (length == 16)
   { // visa 16 digit
-    if (get_digit(num, length) == 4)
+    if (first == 4)
     {
       return 'v';
     }
     // mastercard
-    if (get_digit(num, length) == 5 && get_digit(num, length - 1) == 1 | 2 | 3 | 4 | 5)
+    if (first == 5)
     {
-      return 'm';
+      if (second == 1 || second == 2 || second == 3 || second == 4 || second == 5)
+      {
+        return 'm';
+      }
+      else
+        return 'i';
     }
-    else
-      return 'i';
   }
   // amex
   else if (length == 15)
   {
-    if (get_digit(num, length) == 3 && (get_digit(num, length - 1) == 4 || get_digit(num, length - 1) == 7))
+    if (first == 3 && (second == 4 || second == 7))
     {
       return 'a';
     }
@@ -142,13 +163,15 @@ char check_card(long num)
   // visa 13 digit
   else if (length == 13)
   {
-    if (get_digit(num,length)==4)
+    if (first == 4)
     {
       return 'v';
     }
-    else return 'i';
+    else
+      return 'i';
   }
-  else return 'i';
+  else
+    return 'i';
 }
 
 // bool checksum(long card)
