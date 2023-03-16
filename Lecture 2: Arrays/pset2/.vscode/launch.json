@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/pdebuque/Documents/Code/CS50/Lecture 2: Arrays/pset2",
+      "program": "/Users/pdebuque/Documents/Code/CS50/Lecture 2: Arrays/pset2/build/Debug/outDebug"
+    }
+  ]
+}
