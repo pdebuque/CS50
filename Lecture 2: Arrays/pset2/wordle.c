@@ -21,6 +21,7 @@ int main(int argc, string argv[])
   long word_size;
   char *remaining;
   word_size = strtol(argv[1], &remaining, 10);
+  int guesses = word_size+1;
 
   if (word_size < 5 || word_size > 8)
   {
@@ -30,7 +31,7 @@ int main(int argc, string argv[])
 
   //* ============= BEGIN GAME ===============
   printf("This is WORDLE50\n");
-  printf("You have 6 tries to guess the %ld-letter word I'm thinking of.\n", word_size);
+  printf("You have %i tries to guess the %ld-letter word I'm thinking of.\n", guesses, word_size);
 
   string guess;
   do
@@ -38,5 +39,5 @@ int main(int argc, string argv[])
     guess = get_string("Input a %ld-letter word: ", word_size);
   } while (strlen(guess) != word_size);
 
-  printf("%s", guess);
+  printf("%s\n", guess);
 }
